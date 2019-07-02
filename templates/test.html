@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form  action="/addTask" method="post">
+            <p>Add new Task:</p>
+                <input type="text" name="name">
+                <input type="submit" value="Add">
+        </form>
+
+        <h1>Tasks:</h1>
+        <ul id='taskList'>
+            {% for i in tasks %}
+                <li>
+                    <input type="checkbox" name="" value="">
+                    <span>{{ i.name }}</span>
+                    <a class='edit' href="#">edit</a>
+                    <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+
+                    {{ i.time }}
+                </li>
+
+            {% endfor %}
+        </ul>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        const ul = document.getElementById('taskList');
+        // In case of click in UL, use the DOM traversal, to change the front-end side dynamically
+        // By creating a form to submit the updating value to DB
+        // Using Ajax request to update the page without refresh the page
+
+        ul.addEventListener('click', (e) =>{
+            if (e.target.tagName.toLowerCase() === 'a'){
+                const anchor = e.target;
+                const li = anchor.parentNode;
+                const ul = li.parentNode;
+                const action = anchor.innerHTML; // edit to update the value, cancel to return back to the main route
+                const nameActions = {
+                    // create two actions
+                    edit: () => {
+                        //const span = li.firstElementChild;
+                        const span = li.getElementsByTagName('span')[0];
+                        const f = document.createElement("form");
+
+                        const i = document.createElement("input"); //input element, text
+                        i.setAttribute('type',"text");
+                        i.setAttribute('name',"name");
+                        i.value = span.textContent;
+
+                        const s = document.createElement("input"); //input element, Submit button
+                        s.setAttribute('type',"submit");
+                        s.setAttribute('value',"Submit");
+                        s.setAttribute('id',"update");
+
+                        $(s).click(function(){
+
+                            var id = span.textContent; // get the id then send it to flask app to filter the db
+                            var name = i.value; // get the value to update later the db
+
+                            req = $.ajax({
+                                url: '/edit',
+                                type: 'POST',
+                                async: false,
+                                data: {name: name, id:id},
+                                success: function(data) {
+                                    span.innerHTML = data.name; // change the page without refresh
+                                },
+                                error: function () {
+                                    alert('Sorry, something went wrong :(');
+                                }
+                            });
+
+                        });
+
+                        f.appendChild(i);
+                        f.appendChild(s);
+
+                        li.insertBefore(f, span);
+                        li.removeChild(span);
+                        anchor.innerHTML = 'Cancel'; // change the link to cancel
+                    },
+                    Cancel: () => {
+                        window.location.href = '/tasks' // Return back to `tasks` route
+                    }
+                };
+
+                nameActions[action](); // call the function
+            }
+        });
+
+        ul.addEventListener('click', (e) => {
+
+            if (e.target.tagName.toLowerCase() === 'input'){
+                const checkbox = e.target;
+                const li = checkbox.parentNode;
+                const ul = li.parentNode;
+
+                // alert('h')
+                const span = li.getElementsByTagName('span')[0];
+                id = span.textContent;
+                $.ajax({
+                    url: '/complete',
+                    type: 'POST',
+                    async: false,
+                    data: {id:id},
+                    success: function(data) {
+                        span.style.color = "green"; // change the page without refresh
+                        window.location.href = '/tasks' // Return back to `tasks` route
+                    },
+                    error: function () {
+                        alert('Sorry, something went wrong :(');
+                    }
+                });
+            }
+
+        });
+
+    </script>
+    </body>
+</html>

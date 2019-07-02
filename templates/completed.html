@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>Tasks:</h1>
+        <ul>
+            {% for i in tasks %}
+                <li>
+                    <span>{{ i.name }}</span>
+                    <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                    {{ i.time }}
+                </li>
+
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>
