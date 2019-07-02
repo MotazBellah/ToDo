@@ -16,6 +16,6 @@ class RegistartionForm(FlaskForm):
                                         Length(min=4, max=25, message="Username must be between 4 and 25 charachters")])
     confirm_pswd = PasswordField('confirm_pswd_lable',
                                  validators=[InputRequired(message="Password confirmation Required"),
-                                            EqualTo('password', message="Password must match!"))])
+                                            EqualTo('password', message="Password must match!")])
 
     submit_button = SubmitField("Create")
