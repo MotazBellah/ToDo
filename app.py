@@ -20,12 +20,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login_form():
     reg_form = RegistartionForm()
     if reg_form.validate_on_submit():
         return redirect(url_for('show_tasks'))
-        
+
     return render_template('log.html', form=reg_form)
 
 @app.route('/')
