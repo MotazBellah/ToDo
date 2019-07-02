@@ -23,6 +23,9 @@ db = SQLAlchemy(app)
 @app.route('/login')
 def login_form():
     reg_form = RegistartionForm()
+    if reg_form.validate_on_submit():
+        return redirect(url_for('show_tasks'))
+        
     return render_template('log.html', form=reg_form)
 
 @app.route('/')
