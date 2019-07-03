@@ -71,8 +71,10 @@ def show_tasks():
 
 
 @app.route('/completedTasks')
-@login_required
 def show_completed():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+        
     tasks = Task.query.filter_by(done=True).all()
     return render_template('completed.html', tasks=tasks)
 
