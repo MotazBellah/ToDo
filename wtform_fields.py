@@ -13,14 +13,14 @@ def email_exists(form, field):
 def invalid_credentials(form, field):
     """ Password checker """
 
-    email = form.email.data
-    password = field.data
+    email_entered = form.email.data
+    password_entered = field.data
 
     # Check if credentials is valid
-    user_object = User.query.filter_by(email=field.data).first()
+    user_object = User.query.filter_by(email=email_entered).first()
     if user_object is None:
         raise ValidationError("Email or password is incorrect")
-    elif password != user_object.password:
+    elif password_entered != user_object.password:
         raise ValidationError("Email or password is incorrect")
 
 
