@@ -10,7 +10,7 @@ db = SQLAlchemy()
 class User(UserMixin, db.Model):
     """ User model """
 
-    __tablename__ = "users"
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(25), nullable=False)
     email = db.Column(db.String(25), unique=True, nullable=False)
@@ -25,7 +25,7 @@ class Task(db.Model):
     done = db.Column(db.Boolean, default=False)
     # time = Column(DateTime, default=datetime.datetime.now)
     time = db.Column(db.String(250), default=strftime("%a, %d %b %Y %H:%M:%S", gmtime()))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship(User)
 
 #

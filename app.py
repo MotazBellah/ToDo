@@ -26,6 +26,8 @@ login.init_app(app)
 def load_user(id):
     return User.query.get(int(id))
 
+
+@app.route('/')
 @app.route('/register', methods=['GET', 'POST'])
 def login_form():
     reg_form = RegistartionForm()
@@ -65,7 +67,7 @@ def logout():
     return redirect(url_for('show_tasks'))
 
 
-@app.route('/')
+
 @app.route('/tasks')
 def show_tasks():
     user_id = login_session['user_id']
