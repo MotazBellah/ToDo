@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def login_form():
     reg_form = RegistartionForm()
     if reg_form.validate_on_submit():
@@ -27,9 +27,20 @@ def login_form():
         user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('show_tasks'))
+        return redirect(url_for('login'))
 
     return render_template('log.html', form=reg_form)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login_form = LoginForm()
+
+    # Allow login if validation success
+    if login_form.validate_on_submit():
+        return redirect(url_for('show_tasks'))
+
+    return render_template("login.html", form=login_form)
 
 @app.route('/')
 @app.route('/tasks')

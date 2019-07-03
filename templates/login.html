@@ -1,3 +1,5 @@
+{% from 'form_helper.html' import displayField %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
@@ -5,19 +7,19 @@
         <title></title>
     </head>
     <body>
-        <form class="form-signin">
-          <h2>Please sign in</h2>
-          <label for="inputUsername" >Username</label>
-          <input type="text" id="inputUsername" placeholder="Username" required autofocus>
-          <label for="inputPassword">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button type="submit">Sign in</button>
-        </form>
+        <h1>Login now!</h1>
+        <p>Enter your email/password</p>
+        <form action="{{ url_for('login') }}" method="POST">
 
+            {{ displayField(form.email, 'email', autocomplete='off', autofocuse=true) }}
+            {{ displayField(form.password, 'Password') }}
+
+            <div>
+                {{ form.submit_button }}
+            </div>
+
+            {{ form.csrf_token }}
+
+        </form>
     </body>
 </html>
