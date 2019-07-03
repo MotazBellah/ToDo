@@ -13,7 +13,7 @@ class RegistartionForm(FlaskForm):
                         validators=[InputRequired(message="Email Required"), Email(message="This field requires a valid email address")])
     password = PasswordField('password_lable',
                              validators=[InputRequired(message="Password Required"),
-                                        Length(min=4, max=25, message="Username must be between 4 and 25 charachters")])
+                                        Length(min=4, max=25, message="Password must be between 4 and 25 charachters")])
     confirm_pswd = PasswordField('confirm_pswd_lable',
                                  validators=[InputRequired(message="Password confirmation Required"),
                                             EqualTo('password', message="Password must match!")])

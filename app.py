@@ -24,6 +24,19 @@ db = SQLAlchemy(app)
 def login_form():
     reg_form = RegistartionForm()
     if reg_form.validate_on_submit():
+        # return redirect(url_for('show_tasks'))
+        username = reg_form.username.data
+        email = reg_form.email.data
+        password = reg_form.password.data
+
+        # check email exists
+        user_object = User.query.filter_by(email=email).first()
+        if user_object:
+            return "This email is aleardy registered"
+
+        user = User(username=username, email=email, password=password)
+        db.session.add(user)
+        db.session.commit()
         return redirect(url_for('show_tasks'))
 
     return render_template('log.html', form=reg_form)
