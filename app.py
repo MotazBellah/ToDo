@@ -53,7 +53,8 @@ def show_tasks():
 
 @app.route('/completedTasks')
 def show_completed():
-    tasks = Task.query.filter_by(done=True).all()
+    # tasks = Task.query.filter_by(done=True).all()
+    tasks = User.query.all()
     return render_template('completed.html', tasks=tasks)
 
 
