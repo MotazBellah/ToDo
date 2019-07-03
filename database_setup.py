@@ -25,6 +25,8 @@ class Task(db.Model):
     done = db.Column(db.Boolean, default=False)
     # time = Column(DateTime, default=datetime.datetime.now)
     time = db.Column(db.String(250), default=strftime("%a, %d %b %Y %H:%M:%S", gmtime()))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship(User)
 
 #
 # engine = create_engine('sqlite:///todo.db')

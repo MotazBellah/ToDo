@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from database_setup import *
 from time import gmtime, strftime
 from flask_login import LoginManager, login_user, current_user, login_required, logout_user
+from flask import session as login_session
 from wtform_fields import *
 
 
@@ -51,8 +52,8 @@ def login():
     if login_form.validate_on_submit():
         user_object = User.query.filter_by(email=login_form.email.data).first()
         login_user(user_object)
-        if current_user.is_authenticated:
-            return redirect(url_for('show_tasks'))
+        login_session['user_id'] = user_object.id
+        return redirect(url_for('show_tasks'))
 
     return render_template("login.html", form=login_form)
 
@@ -60,12 +61,15 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    del login_session['user_id']
     return redirect(url_for('show_tasks'))
+
 
 @app.route('/')
 @app.route('/tasks')
 def show_tasks():
-    tasks = Task.query.filter_by(done=False).all()
+    user_id = login_session['user_id']
+    tasks = Task.query.filter_by(done=False).filter_by(user_id=user_id).all()
     return render_template('task.html', tasks=tasks)
 
 
@@ -74,7 +78,7 @@ def show_tasks():
 def show_completed():
     if not current_user.is_authenticated:
         return redirect(url_for('login_form'))
-        
+
     tasks = Task.query.filter_by(done=True).all()
     return render_template('completed.html', tasks=tasks)
 
