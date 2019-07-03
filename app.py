@@ -89,7 +89,7 @@ def show_completed():
 @app.route('/addTask', methods=['POST'])
 def addTask():
     if request.form['name']:
-        newTask = Task(name=request.form['name'])
+        newTask = Task(name=request.form['name'], user_id=login_session['user_id'])
         db.session.add(newTask)
         db.session.commit()
 
