@@ -64,7 +64,7 @@ def login():
 def logout():
     logout_user()
     del login_session['user_id']
-    return redirect(url_for('show_tasks'))
+    return redirect(url_for('login_form'))
 
 
 
