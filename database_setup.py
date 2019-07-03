@@ -2,12 +2,12 @@ import sys, os
 import datetime
 from time import gmtime, strftime
 from flask_sqlalchemy import SQLAlchemy
-# from flask_login import UserMixin
+from flask_login import UserMixin
 
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """ User model """
 
     __tablename__ = "users"

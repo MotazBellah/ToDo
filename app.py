@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import *
 from time import gmtime, strftime
+from flask_login import LoginManager, login_user, current_user, login_required, logout_user
 from wtform_fields import *
 
 
@@ -14,6 +15,15 @@ app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+# configure flask_login
+login = LoginManager(app)
+login.init_app(app)
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 @app.route('/register', methods=['GET', 'POST'])
 def login_form():
@@ -39,9 +49,18 @@ def login():
 
     # Allow login if validation success
     if login_form.validate_on_submit():
-        return redirect(url_for('show_tasks'))
+        user_object = User.query.filter_by(email=login_form.email.data).first()
+        login_user(user_object)
+        if current_user.is_authenticated:
+            return redirect(url_for('show_tasks'))
 
     return render_template("login.html", form=login_form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('show_tasks'))
 
 @app.route('/')
 @app.route('/tasks')
@@ -52,11 +71,10 @@ def show_tasks():
 
 
 @app.route('/completedTasks')
+@login_required
 def show_completed():
-    # tasks = Task.query.filter_by(done=True).all()
-    tasks = User.query.all()
-    return render_template('user.html', tasks=tasks)
-    # return render_template('completed.html', tasks=tasks)
+    tasks = Task.query.filter_by(done=True).all()
+    return render_template('completed.html', tasks=tasks)
 
 
 
