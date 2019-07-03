@@ -55,7 +55,8 @@ def show_tasks():
 def show_completed():
     # tasks = Task.query.filter_by(done=True).all()
     tasks = User.query.all()
-    return render_template('completed.html', tasks=tasks)
+    return render_template('user.html', tasks=tasks)
+    # return render_template('completed.html', tasks=tasks)
 
 
 
