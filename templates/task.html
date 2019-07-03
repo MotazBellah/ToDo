@@ -13,6 +13,7 @@
 
         <h1>Tasks:</h1>
         <ul id='taskList'>
+            {% if tasks%}
             {% for i in tasks %}
                 <li>
                     <input type="checkbox" name="" value="">
@@ -24,6 +25,9 @@
                 </li>
 
             {% endfor %}
+            {% else %}
+                <p>You haven't any task to do!</p>
+            {% endif %}
         </ul>
 
         <a id='completed' href="{{ url_for('show_completed')}}">Completed Tasks</a>
