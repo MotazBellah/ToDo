@@ -5,11 +5,6 @@ from database_setup import *
 from time import gmtime, strftime
 from wtform_fields import *
 
-# engine = create_engine('sqlite:///todo.db')
-# Base.metadata.create_all(engine)
-#
-# DBSession = sessionmaker(bind=engine)
-# session = DBSession()
 
 app = Flask(__name__)
 app.secret_key="sdfdsuperfdlkngflkjnlkbgirlsdessexyasspussyfucfgfgfhhyah!!!!!dfghhm;glhjkhjl,.jk"
@@ -28,16 +23,11 @@ def login_form():
         username = reg_form.username.data
         email = reg_form.email.data
         password = reg_form.password.data
-
-        # check email exists
-        user_object = User.query.filter_by(email=email).first()
-        if user_object:
-            return "This email is aleardy registered"
-        else:
-            user = User(username=username, email=email, password=password)
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('show_tasks'))
+        # Add user to DB
+        user = User(username=username, email=email, password=password)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('show_tasks'))
 
     return render_template('log.html', form=reg_form)
 

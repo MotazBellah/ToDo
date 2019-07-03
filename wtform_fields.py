@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
+from database_setup import User
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import InputRequired, Email, Length, EqualTo
+from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 
 
 class RegistartionForm(FlaskForm):
@@ -19,3 +20,8 @@ class RegistartionForm(FlaskForm):
                                             EqualTo('password', message="Password must match!")])
 
     submit_button = SubmitField("Create")
+
+    def validate_email(self, email):
+        user_object = User.query.filter_by(email=email).first()
+        if user_object:
+            raise ValidationError("This email is aleardy exists")
