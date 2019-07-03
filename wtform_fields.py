@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from database_setup import User
+from passlib.hash import pbkdf2_sha256
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 
@@ -20,7 +21,7 @@ def invalid_credentials(form, field):
     user_object = User.query.filter_by(email=email_entered).first()
     if user_object is None:
         raise ValidationError("Email or password is incorrect")
-    elif password_entered != user_object.password:
+    elif not pbkdf2_sha256.verify(password_entered, user_object.password):
         raise ValidationError("Email or password is incorrect")
 
 

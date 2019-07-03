@@ -23,8 +23,9 @@ def login_form():
         username = reg_form.username.data
         email = reg_form.email.data
         password = reg_form.password.data
+        hashed_pswd = pbkdf2_sha256.hash(password)
         # Add user to DB
-        user = User(username=username, email=email, password=password)
+        user = User(username=username, email=email, password=hashed_pswd)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
