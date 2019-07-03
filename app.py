@@ -107,7 +107,8 @@ def deleteTask(task_name):
 def editTask():
     task = Task.query.filter_by(name=request.form['id']).first()
     task.name = request.form['name']
-    db.session.add(task)
+    # db.session.add(task)
+    db.session.merge(task)
     db.session.commit()
 
     return jsonify({'result': 'success'})
