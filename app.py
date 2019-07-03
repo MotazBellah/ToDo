@@ -105,7 +105,8 @@ def deleteTask(task_name):
 
 @app.route('/edit', methods=['POST'])
 def editTask():
-    task = Task.query.filter_by(name=request.form['id']).first()
+    task = (Task.query.filter_by(user_id=login_session['user_id'])
+           .filter_by(name=request.form['id']).first())
     task.name = request.form['name']
     # db.session.add(task)
     db.session.merge(task)
