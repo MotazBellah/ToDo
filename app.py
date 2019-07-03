@@ -62,8 +62,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-    logout_user()
     del login_session['user_id']
+    logout_user()
     return redirect(url_for('login_form'))
 
 
