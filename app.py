@@ -33,11 +33,11 @@ def login_form():
         user_object = User.query.filter_by(email=email).first()
         if user_object:
             return "This email is aleardy registered"
-
-        user = User(username=username, email=email, password=password)
-        db.session.add(user)
-        db.session.commit()
-        return redirect(url_for('show_tasks'))
+        else:
+            user = User(username=username, email=email, password=password)
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for('show_tasks'))
 
     return render_template('log.html', form=reg_form)
 
