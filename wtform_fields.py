@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 
 def email_exists(self, email):
-    user_object = User.query.filter_by(email=email).first()
+    user_object = User.query.filter_by(email=email.data).first()
     if user_object:
         raise ValidationError("This email is aleardy exists")
 
