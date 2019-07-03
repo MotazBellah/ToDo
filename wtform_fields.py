@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 
 # custom validator for registeration form, to check if email dublicate
-def email_exists(field):
+def email_exists(form, field):
     user_object = User.query.filter_by(email=field.data).first()
     if user_object:
         raise ValidationError("This email is aleardy exists")
