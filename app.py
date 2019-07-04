@@ -97,7 +97,8 @@ def addTask():
 
 @app.route('/delete/<task_name>')
 def deleteTask(task_name):
-    task = Task.query.filter_by(name=task_name).first()
+    task = (Task.query.filter_by(user_id=login_session['user_id'])
+           .filter_by(name=task_name).first())
     db.session.delete(task)
     db.session.commit()
     return redirect(url_for('show_tasks'))
