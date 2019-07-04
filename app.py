@@ -70,6 +70,9 @@ def logout():
 
 @app.route('/tasks')
 def show_tasks():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+
     user_id = login_session['user_id']
     tasks = Task.query.filter_by(done=False).filter_by(user_id=user_id).all()
     return render_template('task.html', tasks=tasks)
@@ -88,6 +91,9 @@ def show_completed():
 
 @app.route('/addTask', methods=['POST'])
 def addTask():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+
     if request.form['name']:
         newTask = Task(name=request.form['name'], user_id=login_session['user_id'])
         db.session.add(newTask)
@@ -98,6 +104,9 @@ def addTask():
 
 @app.route('/delete/<task_name>')
 def deleteTask(task_name):
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+
     task = (Task.query.filter_by(user_id=login_session['user_id'])
            .filter_by(name=task_name).first())
     d.session.delete(task)
@@ -107,6 +116,9 @@ def deleteTask(task_name):
 
 @app.route('/edit', methods=['POST'])
 def editTask():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+
     task = (Task.query.filter_by(user_id=login_session['user_id'])
            .filter_by(name=request.form['id']).first())
     task.name = request.form['name']
@@ -119,6 +131,9 @@ def editTask():
 
 @app.route('/complete', methods=['POST'])
 def completeTask():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+        
     task = session.query(Task).filter_by(name=request.form['id']).first()
     task.done = True
     session.add(task)
