@@ -23,6 +23,14 @@ login = LoginManager(app)
 login.init_app(app)
 
 
+# manage a database connection
+# To avaid  connection timed out errors
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    db.session.remove()
+    d.session.remove()
+
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
