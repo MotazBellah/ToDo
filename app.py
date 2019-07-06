@@ -24,7 +24,7 @@ login.init_app(app)
 
 
 # manage a database connection
-# To avaid  connection timed out errors
+# To avaid  connection time out errors
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     db.session.remove()
