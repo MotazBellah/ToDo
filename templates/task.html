@@ -4,10 +4,10 @@
 {% block head %}
      {{ super() }}
      <style media="screen">
-         #task{
+        #task{
              margin: auto;
              width: 70%;
-         }
+            }
          ul {
             list-style-type:none;
          }
@@ -52,11 +52,15 @@
         {% if tasks%}
         {% for i in tasks %}
             <li>
-                <input type="checkbox" name="" value="">
-                <span>{{ i.name }}</span>
-                <!-- <a class='edit' href="#">edit</a> -->
-                <a class="edit btn btn-outline-warning" href="#">Edit</a>
-                <a class="btn btn-outline-danger" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                <div class="class="float-left"">
+                    <input type="checkbox" name="" value="">
+                    <span>{{ i.name }}</span>
+                </div>
+                <div class="float-right">
+                    <a class="edit btn btn-outline-warning" href="#">Edit</a>
+                    <a class="btn btn-outline-danger" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                </div>
+
                 <!-- <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a> -->
 
                 {{ i.time }}
