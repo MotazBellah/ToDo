@@ -43,7 +43,7 @@
                     <input type="submit" value="Add" class="btn btn-outline-success">
                 </div>
             </div>
-            
+
         </div>
     </form>
 
@@ -54,8 +54,10 @@
             <li>
                 <input type="checkbox" name="" value="">
                 <span>{{ i.name }}</span>
-                <a class='edit' href="#">edit</a>
-                <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                <!-- <a class='edit' href="#">edit</a> -->
+                <a class="edit btn btn-outline-warning" href="#">Edit</a>
+                <a class="btn btn-outline-danger" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                <!-- <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a> -->
 
                 {{ i.time }}
             </li>
