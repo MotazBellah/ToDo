@@ -3,6 +3,12 @@
 
 {% block head %}
      {{ super() }}
+     <style media="screen">
+         #register{
+             margin: auto;
+             width: 50%;
+         }
+     </style>
 {% endblock %}
 
 {% block content %}
@@ -21,33 +27,39 @@
     </span>
   </div>
 </nav>
-    <body>
-        <form  action="/addTask" method="post">
-            <p>Add a new Task:</p>
-                <input type="text" name="name">
-                <input type="submit" value="Add">
-        </form>
 
-        <h1>Tasks:</h1>
-        <ul id='taskList'>
-            {% if tasks%}
-            {% for i in tasks %}
-                <li>
-                    <input type="checkbox" name="" value="">
-                    <span>{{ i.name }}</span>
-                    <a class='edit' href="#">edit</a>
-                    <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+<div id="task">
+    <form  action="/addTask" method="post">
+        <p>Add a new Task:</p>
+            <input type="text" name="name">
+            <input type="submit" value="Add">
+    </form>
 
-                    {{ i.time }}
-                </li>
+    <h1>Tasks:</h1>
+    <ul id='taskList'>
+        {% if tasks%}
+        {% for i in tasks %}
+            <li>
+                <input type="checkbox" name="" value="">
+                <span>{{ i.name }}</span>
+                <a class='edit' href="#">edit</a>
+                <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
 
-            {% endfor %}
-            {% else %}
-                <p>You haven't any task to do!</p>
-            {% endif %}
-        </ul>
+                {{ i.time }}
+            </li>
 
-        <a id='completed' href="{{ url_for('show_completed')}}">Completed Tasks</a>
+        {% endfor %}
+        {% else %}
+            <p>You haven't any task to do!</p>
+        {% endif %}
+    </ul>
+
+    <a id='completed' href="{{ url_for('show_completed')}}">Completed Tasks</a>
+
+</div>
+
+
+
 {% block script %}
     {{ super() }}
 
