@@ -32,8 +32,8 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
     </div>
-    <a class="btn btn-outline-success m-2 m-sm-0" href="{{ url_for('login_form') }}">Register</a>
-    <a class="btn btn-outline-success m-2 m-sm-0" href="{{ url_for('login') }}">Login</a> -->
+    <a class="btn btn-outline-success m-2" href="{{ url_for('login_form') }}">Register</a>
+    <a class="btn btn-outline-success m-2" href="{{ url_for('login') }}">Login</a> -->
 </nav>
 
     <h1>Get Started</h1>
@@ -45,7 +45,7 @@
         {{ displayField(form.confirm_pswd, 'Confirme Password') }}
 
         <div class="form-group">
-            <input type="submit" value="Create" class="btn btn-outline-secondary">
+            <input type="submit" value="Create" class="btn btn-outline-success">
         </div>
         <!-- <div class="btn btn-outline-success my-2 my-sm-0">
             {{ form.submit_button }}
