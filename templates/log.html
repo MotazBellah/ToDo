@@ -29,7 +29,6 @@
 
     </ul>
     <span class="navbar-text">
-        <a class="btn btn-outline-success" href="{{ url_for('login_form') }}">Register</a>
         <a class="btn btn-outline-success" href="{{ url_for('login') }}">Login</a>
     </span>
   </div>
@@ -46,9 +45,7 @@
         <div class="form-group">
             <input type="submit" value="Create" class="btn btn-outline-success">
         </div>
-        <!-- <div class="btn btn-outline-success my-2 my-sm-0">
-            {{ form.submit_button }}
-        </div> -->
+
 
         {{ form.csrf_token }}
 
