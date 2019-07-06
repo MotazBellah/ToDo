@@ -56,14 +56,14 @@
                     <input type="checkbox" name="" value="">
                     <span>{{ i.name }}</span>
                 </div>
-                <div class="float-right">
+                <div class="float-right align-top">
                     <a class="edit btn btn-outline-warning" href="#">Edit</a>
                     <a class="btn btn-outline-danger" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
                 </div>
 
                 <!-- <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a> -->
 
-                {{ i.time }}
+                <sub>{{ i.time }}</sub>
             </li>
 
         {% endfor %}
