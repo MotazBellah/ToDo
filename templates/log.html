@@ -27,18 +27,16 @@
 </nav> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <span class="navbar-brand" href="#">Get Things Done</span>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <span class="navbar-brand" href="#">Get Things Done</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 
-              </div>
-
- <a class="btn btn-outline-light" href="#"> Log In </a>
- <a class="btn btn-outline-success my-2 my-sm-0" href="{{ url_for('login_form') }}">Register</a>
- <a class="btn btn-outline-success my-2 my-sm-0" href="{{ url_for('login') }}">Login</a> -->
-            </nav>
+    </div>
+    <a class="btn btn-outline-success my-2 my-sm-0" href="{{ url_for('login_form') }}">Register</a>
+    <a class="btn btn-outline-success my-2 my-sm-0" href="{{ url_for('login') }}">Login</a> -->
+</nav>
 
     <h1>Get Started</h1>
     <form action="{{ url_for('login_form') }}" method="POST">
@@ -48,14 +46,14 @@
         {{ displayField(form.password, 'Password') }}
         {{ displayField(form.confirm_pswd, 'Confirme Password') }}
 
-        <div>
+        <div class="btn btn-outline-success my-2 my-sm-0">
             {{ form.submit_button }}
         </div>
 
         {{ form.csrf_token }}
 
     </form>
-    <p>Already registered, click <a href="{{ url_for('login') }}">login</a></p>
+
 
     {% block script %}
         {{ super() }}
