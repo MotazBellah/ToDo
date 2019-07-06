@@ -19,21 +19,11 @@
 
     </ul>
     <span class="navbar-text">
-        <a class="btn btn-outline-success m-2" href="{{ url_for('login_form') }}">Register</a>
-        <a class="btn btn-outline-success m-2" href="{{ url_for('login') }}">Login</a>
+        <a class="btn btn-outline-success" href="{{ url_for('login_form') }}">Register</a>
+        <a class="btn btn-outline-success" href="{{ url_for('login') }}">Login</a>
     </span>
   </div>
 </nav>
-
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <span class="navbar-brand" href="#">Get Things Done</span>
-
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-    </div>
-    <a class="btn btn-outline-success m-2" href="{{ url_for('login_form') }}">Register</a>
-    <a class="btn btn-outline-success m-2" href="{{ url_for('login') }}">Login</a>
-</nav> -->
 
     <h1>Get Started</h1>
     <form action="{{ url_for('login_form') }}" method="POST">
