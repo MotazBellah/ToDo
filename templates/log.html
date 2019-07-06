@@ -5,6 +5,9 @@
 
 {% block head %}
      {{ super() }}
+    <style media="screen">
+        
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -26,7 +29,7 @@
 </nav>
 
     <h1>Get Started</h1>
-    <form class="was-validated" action="{{ url_for('login_form') }}" method="POST">
+    <form action="{{ url_for('login_form') }}" method="POST">
 
         {{ displayField(form.username, 'Username', autocomplete='off', autofocuse=true) }}
         {{ displayField(form.email, 'email', autocomplete='off', autofocuse=true) }}

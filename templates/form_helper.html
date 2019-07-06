@@ -6,9 +6,9 @@
         <!-- Error messages -->
         <ul>
             {% for error in fieldName.errors %}
-                <li>{{ error }}</li>
+                <li><sub>{{ error }}</sub></li>
             {% endfor %}
         </ul>
     </div>
-    
+
 {% endmacro %}
