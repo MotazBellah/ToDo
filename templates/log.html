@@ -1,28 +1,29 @@
 {% from 'form_helper.html' import displayField %}
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>Get Started</h1>
-        <form action="{{ url_for('login_form') }}" method="POST">
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
 
-            {{ displayField(form.username, 'Username', autocomplete='off', autofocuse=true) }}
-            {{ displayField(form.email, 'email', autocomplete='off', autofocuse=true) }}
-            {{ displayField(form.password, 'Password') }}
-            {{ displayField(form.confirm_pswd, 'Confirme Password') }}
+{% block head %}
+     {{ super() }}
+{% endblock %}
 
-            <div>
-                {{ form.submit_button }}
-            </div>
+{% block content %}
+    {{ super() }}
 
-            {{ form.csrf_token }}
+    <h1>Get Started</h1>
+    <form action="{{ url_for('login_form') }}" method="POST">
 
-        </form>
-        <p>Already registered, click <a href="{{ url_for('login') }}">login</a></p>
+        {{ displayField(form.username, 'Username', autocomplete='off', autofocuse=true) }}
+        {{ displayField(form.email, 'email', autocomplete='off', autofocuse=true) }}
+        {{ displayField(form.password, 'Password') }}
+        {{ displayField(form.confirm_pswd, 'Confirme Password') }}
 
-    </body>
-</html>
+        <div>
+            {{ form.submit_button }}
+        </div>
+
+        {{ form.csrf_token }}
+
+    </form>
+    <p>Already registered, click <a href="{{ url_for('login') }}">login</a></p>
+{% endblock %}
