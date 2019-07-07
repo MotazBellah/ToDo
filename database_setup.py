@@ -1,6 +1,6 @@
 import sys, os
-import datetime
-from time import gmtime, strftime
+from datetime import datetime, timezone
+# from time import gmtime, strftime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
@@ -24,7 +24,7 @@ class Task(db.Model):
     name = db.Column(db.String(250), nullable=False)
     done = db.Column(db.Boolean, default=False)
     # time = db.Column(db.String(250), default=strftime("%a, %d %b %Y %H:%M:%S", gmtime()))
-    time = db.Column(db.String(250), default=datetime.datetime.now().strftime("%a, %d %b %Y %H:%M:%S"))
+    time = db.Column(db.String(250), default=datetime.now(timezone.utc).astimezone().strftime("%a, %d %b %Y %H:%M:%S"))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship(User)
 
