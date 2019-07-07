@@ -11,6 +11,11 @@
          ul {
             list-style-type:none;
          }
+         @media only screen and (max-width: 600px) {
+           #task {
+             width: 100%;
+           }
+         }
      </style>
 {% endblock %}
 
@@ -26,7 +31,7 @@
 
     </ul>
     <span class="navbar-text">
-        <a class="btn btn-outline-success" href="{{ url_for('logout') }}">log out</a>
+        <a class="btn btn-outline-danger" href="{{ url_for('logout') }}">log out</a>
     </span>
   </div>
 </nav>
@@ -52,13 +57,10 @@
         {% if tasks%}
         {% for i in tasks %}
             <li>
-                    <input type="checkbox" name="" value="">
-                    <span>{{ i.name }}</span>
-                    <a id="edit" class="edit btn btn-outline-warning" href="#">Edit</a>
-                    <a class="btn btn-outline-danger" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
-
-
-                <!-- <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a> -->
+                    <input class="float-left" type="checkbox" name="" value="">
+                    <span class="float-left">{{ i.name }}</span>
+                    <a id="edit" class="edit btn btn-outline-warning float-right" href="#">Edit</a>
+                    <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
 
                 <sub>{{ i.time }}</sub>
             </li>
@@ -69,7 +71,7 @@
         {% endif %}
     </ul>
 
-    <a id='completed' href="{{ url_for('show_completed')}}">Completed Tasks</a>
+    <a id='completed' class="btn btn-outline-info" href="{{ url_for('show_completed')}}">Completed Tasks</a>
 
 </div>
 

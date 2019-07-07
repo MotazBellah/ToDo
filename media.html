@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <style media="screen">
+            .log{
+                margin: auto;
+                width: 50%;
+                background-color: green;
+            }
+            @media only screen and (max-width: 600px) {
+              .log {
+                background-color: lightblue;
+                width: 100%;
+              }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="log">
+            <form  action="/addTask" method="post">
+                <p>Add a new Task:</p>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-sm mb-2">
+                            <input class="form-control" type="text" name="name" placeholder="Add new task">
+                        </div>
+                        <div class="col-sm">
+                            <input type="submit" value="Add" class="btn btn-outline-success">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+
+    </body>
+</html>
