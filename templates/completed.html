@@ -1,21 +1,44 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        <h1>Tasks:</h1>
-        <ul>
-            {% for i in tasks %}
-                <li>
-                    <span>{{ i.name }}</span>
-                    <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
-                    {{ i.time }}
-                </li>
+{% extends "layout.html" %}
+{% block title %}Completed{% endblock %}
 
-            {% endfor %}
-        </ul>
+{% block head %}
+     {{ super() }}
+     <style media="screen">
+        #complete{
+             /* margin: auto; */
+             width: 70%;
+            }
+         ul {
+            list-style-type:none;
+         }
+         @media only screen and (max-width: 600px) {
+           #complete {
+             width: 100%;
+           }
+           ul {
+             padding-inline-start: 0px;
+           }
+         }
+     </style>
+{% endblock %}
 
-    </body>
-</html>
+{% block content %}
+
+        <div id="complete">
+            <h1>Completed Tasks:</h1>
+            <ul>
+                {% for i in tasks %}
+                    <li>
+                        <span>{{ i.name }}</span>
+                        <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                        {{ i.time }}
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+
+    {% block script %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}
