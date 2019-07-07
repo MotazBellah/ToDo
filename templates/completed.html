@@ -39,12 +39,17 @@
             {% for i in tasks %}
             <li class="mb-4">
                 <span>{{ i.name }}</span>
-                    <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                    <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteComplete', task_name=i.name)}}">Delete</a>
                     <sub class="d-block mt-2 text-secondary">{{ i.time }}</sub>
             </li>
 
             {% endfor %}
-            </ul>
+        </ul>
+
+        <hr>
+
+        <a id='completed' class="btn btn-outline-success my-2" href="{{ url_for('show_tasks')}}">Add New Task</a>
+
 </div>
 
     {% block script %}
