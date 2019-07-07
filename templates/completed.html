@@ -24,14 +24,14 @@
 
 {% block content %}
 
-        <div id="complete">
-            <h1>Completed Tasks:</h1>
+        <div id="complete" class="my-3 mx-auto">
+            <h3>Completed Tasks:</h3>
             <ul>
                 {% for i in tasks %}
                     <li>
                         <span>{{ i.name }}</span>
-                        <a href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
-                        {{ i.time }}
+                        <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                        <sub class="d-block mt-2 text-secondary">{{ i.time }}</sub>
                     </li>
 
                 {% endfor %}

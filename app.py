@@ -145,6 +145,7 @@ def completeTask():
     task = (Task.query.filter_by(user_id=login_session['user_id'])
             .filter_by(name=request.form['id']).first())
     task.done = True
+    task.time = strftime("%a, %d %b %Y %H:%M:%S", gmtime())
     db.session.merge(task)
     db.session.commit()
 
