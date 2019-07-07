@@ -24,19 +24,28 @@
 
 {% block content %}
 
-        <div id="complete" class="my-3 mx-auto">
-            <h3>Completed Tasks:</h3>
-            <ul class="mt-3">
-                {% for i in tasks %}
-                    <li class="mb-4">
-                        <span>{{ i.name }}</span>
-                        <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
-                        <sub class="d-block mt-2 text-secondary">{{ i.time }}</sub>
-                    </li>
+<nav class="navbar navbar-expand-xlg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Get Things Done</a>
 
-                {% endfor %}
+    <span class="navbar-text float-right">
+        <a class="btn btn-outline-danger" href="{{ url_for('logout') }}">log out</a>
+    </span>
+
+</nav>
+
+<div id="complete" class="my-3 mx-auto">
+    <h3>Completed Tasks:</h3>
+        <ul class="mt-3">
+            {% for i in tasks %}
+            <li class="mb-4">
+                <span>{{ i.name }}</span>
+                    <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
+                    <sub class="d-block mt-2 text-secondary">{{ i.time }}</sub>
+            </li>
+
+            {% endfor %}
             </ul>
-        </div>
+</div>
 
     {% block script %}
         {{ super() }}

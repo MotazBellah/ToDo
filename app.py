@@ -122,6 +122,18 @@ def deleteTask(task_name):
     return redirect(url_for('show_tasks'))
 
 
+@app.route('/deleteCompleted/<task_name>')
+def deleteComplete(task_name):
+    if not current_user.is_authenticated:
+        return redirect(url_for('login_form'))
+
+    task = (Task.query.filter_by(user_id=login_session['user_id'])
+           .filter_by(name=task_name).first())
+    d.session.delete(task)
+    d.session.commit()
+    return redirect(url_for('show_completed'))
+
+
 @app.route('/edit', methods=['POST'])
 def editTask():
     if not current_user.is_authenticated:
