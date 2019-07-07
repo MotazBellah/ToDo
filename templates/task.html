@@ -57,9 +57,9 @@
         {% if tasks%}
         {% for i in tasks %}
             <li>
-                    <input class="float-left" type="checkbox" name="" value="">
-                    <span class="float-left">{{ i.name }}</span>
-                    <a id="edit" class="edit btn btn-outline-warning float-right" href="#">Edit</a>
+                    <input class="mr-2" type="checkbox" name="" value="">
+                    <span class="mr-5">{{ i.name }}</span>
+                    <a id="edit" class="edit btn btn-outline-warning float-right mr-2" href="#">Edit</a>
                     <a class="btn btn-outline-danger float-right" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
 
                 <sub>{{ i.time }}</sub>
