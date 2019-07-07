@@ -108,6 +108,14 @@
                         s.setAttribute('value',"Submit");
                         s.setAttribute('id',"update");
 
+                        const cancel = document.createElement("input"); //input element, Submit button
+                        cancel.setAttribute('type',"submit");
+                        cancel.setAttribute('value',"Cancel");
+
+                        $(cancel).click(function() {
+                            window.location.href = '/tasks' // Return back to `tasks` route
+                        });
+
                         $(s).click(function(){
 
                             var id = span.textContent; // get the id then send it to flask app to filter the db
@@ -130,6 +138,7 @@
 
                         f.appendChild(i);
                         f.appendChild(s);
+                        f.appendChild(cancel);
 
                         li.insertBefore(f, span);
                         li.removeChild(span);
