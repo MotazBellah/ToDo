@@ -38,7 +38,6 @@
 
 <div id="task" class="mx-auto mt-5">
     <form  action="/addTask" method="post">
-        <p>Add a new Task:</p>
         <div class="form-group">
             <div class="form-row">
                 <div class="col-sm mb-2">
@@ -62,7 +61,7 @@
                     <a id="edit" class="edit btn btn-outline-warning float-right mr-2" href="#">Edit</a>
                     <a class="btn btn-outline-danger float-right mr-2" href="{{ url_for('deleteTask', task_name=i.name)}}">Delete</a>
 
-                <sub class="d-block mt-2">{{ i.time }}</sub>
+                <sub class="d-block mt-2 text-secondary">{{ i.time }}</sub>
             </li>
 
         {% endfor %}
@@ -71,7 +70,9 @@
         {% endif %}
     </ul>
 
-    <a id='completed' class="btn btn-outline-info" href="{{ url_for('show_completed')}}">Completed Tasks</a>
+    <hr>
+
+    <a id='completed' class="btn btn-outline-info my-2" href="{{ url_for('show_completed')}}">Completed Tasks</a>
 
 </div>
 
