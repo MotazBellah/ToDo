@@ -15,8 +15,13 @@
             color: red;
         }
         #register{
-            margin: auto;
+            /* margin: auto; */
             width: 50%;
+        }
+        @media only screen and (max-width: 600px) {
+          #register {
+            width: 100%;
+          }
         }
     </style>
 {% endblock %}
@@ -37,7 +42,7 @@
     </span>
   </div>
 </nav>
-    <div id="register">
+    <div id="register" class="mx-auto">
         <h1>Get Started</h1>
         <form action="{{ url_for('login_form') }}" method="POST">
 
