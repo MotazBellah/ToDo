@@ -99,7 +99,6 @@
                         const anchors = li.getElementsByTagName('a');
                         const f = document.createElement("form");
                         li.setAttribute('class',"mb-5");
-                    
 
                         const i = document.createElement("input"); //input element, text
                         i.setAttribute('type',"text");
@@ -111,6 +110,7 @@
                         s.setAttribute('value',"Submit");
                         s.setAttribute('id',"update");
 
+        
 
                         $(s).click(function(){
 
@@ -134,7 +134,7 @@
 
                         f.appendChild(i);
                         f.appendChild(s);
-                        f.appendChild(cancel);
+
 
                         li.insertBefore(f, span);
                         li.removeChild(span);
