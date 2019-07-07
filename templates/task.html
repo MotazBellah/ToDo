@@ -115,9 +115,9 @@
 
                         $(cancel).click(function() {
                             window.location.href = '/tasks' // Return back to `tasks` route
-                            for (var i = 0; i < anchors.length; i++) {
-                                anchors[i].style.display = '';
-                            }
+                            // for (var i = 0; i < anchors.length; i++) {
+                            //     anchors[i].style.display = '';
+                            // }
                         });
 
                         $(s).click(function(){
@@ -149,7 +149,7 @@
                         for (var i = 0; i < anchors.length; i++) {
                             anchors[i].style.display = 'none';
                         }
-                        anchor.innerHTML = 'Cancel'; // change the link to cancel
+                        // anchor.innerHTML = 'Cancel'; // change the link to cancel
                     },
                     Cancel: () => {
                         window.location.href = '/tasks' // Return back to `tasks` route
