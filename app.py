@@ -92,6 +92,7 @@ def show_completed():
     if not current_user.is_authenticated:
         return redirect(url_for('login_form'))
 
+    user_id = login_session['user_id']
     tasks = Task.query.filter_by(done=True).filter_by(user_id=user_id).all()
     return render_template('completed.html', tasks=tasks)
 
