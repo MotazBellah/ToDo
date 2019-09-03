@@ -10,7 +10,7 @@ from database_setup import db as d
 
 
 app = Flask(__name__)
-app.secret_key="sdfdsuperfdlkngflkjnlkbgirlsdessexyasspussyfucfgfgfhhyah!!!!!dfghhm;glhjkhjl,.jk"
+app.secret_key="sdfdsuperfdlkngflkjnlkbgirlsdfucfgfgfhhyah!!!!!dfghhm;glhjkhjl,.jk"
 app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08\xaa"
 
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
